@@ -4,7 +4,7 @@ This bundle adds a basic syntax support for the [Golo programming language](http
 
 It works best when used in combination with [Pathogen](https://github.com/tpope/vim-pathogen):
 
-    cd ~/.vim/bundles
+    cd ~/.vim/bundle
     git clone git://github.com/jponge/vim-golo.git
 
 ## Status
