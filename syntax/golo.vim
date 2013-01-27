@@ -2,7 +2,7 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn keyword goloDefinition module function let var
+syn keyword goloDefinition module function let var pimp
 syn keyword goloBranching if else case match return
 syn keyword goloCase case when then otherwise
 syn keyword goloLoop while for foreach
