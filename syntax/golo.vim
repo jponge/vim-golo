@@ -2,6 +2,8 @@ if exists("b:current_syntax")
   finish
 endif
 
+set nospell
+
 syn keyword goloDefinition module function let var pimp
 syn keyword goloBranching if else case match return
 syn keyword goloCase case when then otherwise
