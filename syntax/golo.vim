@@ -18,6 +18,7 @@ syn match goloDelimiter "|"
 syn match goloDelimiter "("
 syn match goloDelimiter ")"
 
+syn match goloOperator "\^"
 syn match goloOperator ":"
 syn match goloOperator "==" 
 syn match goloOperator "!="
@@ -39,6 +40,7 @@ syn match goloComment "#.*$"
 syn keyword goloBoolean true false
 syn match goloString "\"[^"]*\""
 syn match goloClassRef "\.class"
+syn match goloClassRef "\.module"
 
 hi def link goloDefinition Type
 hi def link goloBranching Conditional
