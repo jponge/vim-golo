@@ -11,6 +11,7 @@ syn keyword goloLoop while for foreach
 syn keyword goloImport import
 syn keyword goloException try catch finally throw
 syn keyword goloModifier local
+syn keyword goloBreakflow continue break
 
 syn match goloDelimiter "{"
 syn match goloDelimiter "}"
@@ -44,6 +45,7 @@ syn match goloClassRef "\.module"
 
 hi def link goloDefinition Type
 hi def link goloBranching Conditional
+hi def link goloBreakflow Repeat
 hi def link goloComment Comment
 hi def link goloString String
 hi def link goloBoolean Boolean
