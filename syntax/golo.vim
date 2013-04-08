@@ -4,7 +4,7 @@ endif
 
 set nospell
 
-syn keyword goloDefinition module function let var pimp
+syn keyword goloDefinition module function let var augment
 syn keyword goloBranching if else case match return
 syn keyword goloCase case when then otherwise
 syn keyword goloLoop while for foreach
