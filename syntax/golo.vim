@@ -21,6 +21,7 @@ syn match goloDelimiter ")"
 
 syn match goloOperator "\^"
 syn match goloOperator ":"
+syn match goloOperator "?:"
 syn match goloOperator "==" 
 syn match goloOperator "!="
 syn match goloOperator "="
@@ -34,7 +35,7 @@ syn match goloOperator "<="
 syn match goloOperator ">"
 syn match goloOperator ">="
 syn match goloOperator "="
-syn keyword goloOperator is isnt and or not oftype in
+syn keyword goloOperator is isnt and or not oftype in orIfNull
 
 syn match goloComment "#.*$"
 
