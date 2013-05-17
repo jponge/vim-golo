@@ -44,11 +44,14 @@ syn match goloString "\"[^"]*\""
 syn match goloClassRef "\.class"
 syn match goloClassRef "\.module"
 
+syn region goloMultiString start=/"""/ end=/"""/
+
 hi def link goloDefinition Type
 hi def link goloBranching Conditional
 hi def link goloBreakflow Repeat
 hi def link goloComment Comment
 hi def link goloString String
+hi def link goloMultiString String
 hi def link goloBoolean Boolean
 hi def link goloImport Include
 hi def link goloOperator Operator
