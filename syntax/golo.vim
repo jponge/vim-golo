@@ -54,6 +54,8 @@ syn match goloClassRef "\.module"
 
 syn region goloMultiString start=/"""/ end=/"""/
 
+syn region goloDoc start=/----/ end=/----/
+
 hi def link goloDefinition Type
 hi def link goloBranching Conditional
 hi def link goloBreakflow Repeat
@@ -70,6 +72,7 @@ hi def link goloLoop Repeat
 hi def link goloException Exception
 hi def link goloModifier StorageClass
 hi def link goloClassRef Number
+hi def link goloDoc Comment
 
 let b:current_syntax = "golo"
 
