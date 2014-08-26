@@ -52,6 +52,9 @@ syn match goloString "\"[^"]*\""
 syn match goloClassRef "\.class"
 syn match goloClassRef "\.module"
 
+syn match goloDecorator "@\([_a-zA-Z][_a-zA-Z0-9]*\.\)*[_a-zA-Z][_a-zA-Z0-9]*"
+
+
 syn region goloMultiString start=/"""/ end=/"""/
 
 syn region goloDoc start=/----/ end=/----/
@@ -73,6 +76,7 @@ hi def link goloException Exception
 hi def link goloModifier StorageClass
 hi def link goloClassRef Number
 hi def link goloDoc Comment
+hi def link goloDecorator PreProc
 
 let b:current_syntax = "golo"
 
