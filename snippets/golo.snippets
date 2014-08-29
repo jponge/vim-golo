@@ -1,0 +1,109 @@
+snippet main
+	function main = |args| {
+		${1}
+	}
+snippet mod
+	module
+snippet imp
+	import
+snippet re
+	return
+snippet br
+	break
+snippet co
+	continue
+snippet pr
+	println(${1})
+snippet loc
+	local
+snippet fun
+	function ${1:name} = |${2:args}| {
+		${3}
+	}
+snippet func
+	function ${1:name} = |${2:args}| -> ${3}
+snippet lfun
+	local function ${1:name} = |${2:args}| {
+		${3}
+	}
+snippet lfunc
+	local function ${1:name} = |${2:args}| -> ${3}
+snippet let
+	let ${1:name} = ${2:value}
+snippet var
+	var ${1:name} = ${2:value}
+snippet if
+	if (${1:condition}) { ${2:code} }
+snippet el
+	else { ${1:code} }
+snippet elif
+	else if (${1:condition}) { ${2:code} }
+snippet cas
+	case {
+		when ${1:condition} { ${2:code} }
+		otherwise { ${3} }
+	}
+snippet mat
+	match {
+		when ${1:condition} then ${2:value}
+		otherwise ${3}
+	}
+snippet whe
+	when ${1:condition} { ${2:code} }
+snippet wt
+	when ${1:condition} then ${2:value}
+snippet whi
+	while (${1:condition}) { ${2:code} }
+snippet for
+	for (${1}, ${2}, ${3}) { ${4} }
+snippet fore
+	foreach ${1} in ${2} { $3 }
+snippet ra
+	raise("${1}")
+snippet rac
+	raise("${1}", $2)
+snippet th
+	throw
+snippet try
+	try {
+		${2}
+	} catch (${1:e}) {
+	}
+snippet tryf
+	try {
+		${2}
+	} catch(${1:e}) {
+	} finally {
+	}
+snippet letc
+	let ${1:name} = |${2:args}| {
+		${3}
+	}
+snippet letcc
+	let ${1:name} = |${2:args}| -> ${3}
+snippet aII
+	asInterfaceInstance(${1:class}, ${2})
+snippet aT
+	: andThen(${1})
+snippet bA
+	: bindAt(${1})
+snippet req
+	require(${1}, "${2}")
+snippet rNN
+	requireNotNull(${1})
+snippet ran
+	range(${1}, ${2})
+snippet iB
+	: incrementBy(${1})
+snippet aug
+	augment ${1} {
+		$2
+	}
+snippet str
+	struct ${1} = { ${2} }
+snippet DO
+	DynamicObject()
+snippet DV
+	DynamicVariable(${1})
+snippet Obs
+	Observable(${1})
