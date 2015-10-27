@@ -4,7 +4,7 @@ endif
 
 set nospell
 
-syn keyword goloDefinition module function let var augment struct
+syn keyword goloDefinition module function let var augment struct union
 syn keyword goloBranching if else case match return
 syn keyword goloCase case when then otherwise
 syn keyword goloLoop while for foreach
@@ -53,7 +53,6 @@ syn match goloClassRef "\.class"
 syn match goloClassRef "\.module"
 
 syn match goloDecorator "@\([_a-zA-Z][_a-zA-Z0-9]*\.\)*[_a-zA-Z][_a-zA-Z0-9]*"
-
 
 syn region goloMultiString start=/"""/ end=/"""/
 
