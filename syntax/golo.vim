@@ -51,7 +51,7 @@ hi def link goloException Exception
 syn keyword goloModifier local
 hi def link goloModifier StorageClass
 
-syn match goloDecorator "@\([_a-zA-Z][_a-zA-Z0-9]*\.\)*[_a-zA-Z][_a-zA-Z0-9]*"
+syn match goloDecorator "@!\?\([_a-zA-Z][_a-zA-Z0-9]*\.\)*[_a-zA-Z][_a-zA-Z0-9]*"
 hi def link goloDecorator PreProc
 
 syn match goloMacroInvocation "&:\?\([_a-zA-Z][_a-zA-Z0-9]*\.\)*[_a-zA-Z][_a-zA-Z0-9]*"
