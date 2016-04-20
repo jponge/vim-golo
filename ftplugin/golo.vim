@@ -19,6 +19,7 @@ if exists(':Tagbar')
                 \ 's:Structs',
                 \ 'v:Module States',
                 \ 'f:Functions',
+                \ 'd:Macros',
                 \ 'm:fields',
                 \ 'g:Union',
                 \ 'e:value',
