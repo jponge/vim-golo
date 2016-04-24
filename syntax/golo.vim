@@ -5,14 +5,21 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn region goloBlock start="{" end="}" transparent fold
+if exists("g:golo_with_markdown") && g:golo_with_markdown
+  let s:golo_with_markdown=1
+else
+  let s:golo_with_markdown=0
+endif
+
+syn case match
+
 syn region goloBlock start="{" end="}" transparent fold
 
 "## Errors
 " Java keywords that does not exists in Golo
 syn keyword goloError class
 " trailing semicolon
-syn match goloError ";\s*$"
+syn match goloError ";\s*$" display
 " trailing white space
 syn match goloSpaceError display excludenl"\s\+$"
 " mixed spaces and tabs
@@ -28,7 +35,7 @@ syn keyword goloDefinition function macro augmentation struct union nextgroup=go
 syn keyword goloAugment augment with
 hi def link goloDefinition Type
 hi def link goloAugment Type
-syn match goloDefName "\%(\%(function\|macro\|augmentation\|union\|struct\)\s\+\)\@<=\h\%(\w\)*" contained
+syn match goloDefName "\%(\%(function\|macro\|augmentation\|union\|struct\)\s\+\)\@<=\h\%(\w\)*" contained display
 hi def link goloDefName Function
 
 syn keyword goloMacroQuoting quote unquote
@@ -51,7 +58,7 @@ hi def link goloException Exception
 syn keyword goloModifier local
 hi def link goloModifier StorageClass
 
-syn match goloDecorator "@!\?\([_a-zA-Z][_a-zA-Z0-9]*\.\)*[_a-zA-Z][_a-zA-Z0-9]*"
+syn match goloDecorator "@!\?\([_a-zA-Z][_a-zA-Z0-9]*\.\)*[_a-zA-Z][_a-zA-Z0-9]*" display
 hi def link goloDecorator PreProc
 
 syn match goloMacroInvocation "&:\?\([_a-zA-Z][_a-zA-Z0-9]*\.\)*[_a-zA-Z][_a-zA-Z0-9]*"
@@ -59,49 +66,58 @@ hi def link goloMacroInvocation PreProc
 
 
 "## Delimiters and operators
-syn match goloDelimiter "{"
-syn match goloDelimiter "}"
-syn match goloDelimiter "|"
-syn match goloDelimiter "("
-syn match goloDelimiter ")"
-syn match goloDelimiter "map\["
-syn match goloDelimiter "array\["
-syn match goloDelimiter "list\["
-syn match goloDelimiter "set\["
-syn match goloDelimiter "vector\["
-syn match goloDelimiter "tuple\["
-syn match goloDelimiter "\["
-syn match goloDelimiter "\]"
-syn match goloDelimiter "\.\."
+syn match goloDelimiter "{" display
+syn match goloDelimiter "}" display
+syn match goloDelimiter "|" display
+syn match goloDelimiter "(" display
+syn match goloDelimiter ")" display
+syn match goloDelimiter "map\[" display
+syn match goloDelimiter "array\[" display
+syn match goloDelimiter "list\[" display
+syn match goloDelimiter "set\[" display
+syn match goloDelimiter "vector\[" display
+syn match goloDelimiter "tuple\[" display
+syn match goloDelimiter "\[" display
+syn match goloDelimiter "\]" display
+syn match goloDelimiter "\.\." display
 hi def link goloDelimiter Delimiter
 
-syn match goloOperator "\^"
-syn match goloOperator ":"
-syn match goloOperator "?:"
-syn match goloOperator "==" 
-syn match goloOperator "!="
-syn match goloOperator "="
-syn match goloOperator "+"
-syn match goloOperator "-"
-syn match goloOperator "*"
-syn match goloOperator "%"
-syn match goloOperator "/"
-syn match goloOperator "<"
-syn match goloOperator "<="
-syn match goloOperator ">"
-syn match goloOperator ">="
-syn match goloOperator "="
-syn match goloOperator "\.\.\."
+syn match goloOperator "\^" display
+syn match goloOperator ":" display
+syn match goloOperator "?:" display
+syn match goloOperator "=="  display
+syn match goloOperator "!=" display
+syn match goloOperator "=" display
+syn match goloOperator "+" display
+syn match goloOperator "-" display
+syn match goloOperator "*" display
+syn match goloOperator "%" display
+syn match goloOperator "/" display
+syn match goloOperator "<" display
+syn match goloOperator "<=" display
+syn match goloOperator ">" display
+syn match goloOperator ">=" display
+syn match goloOperator "=" display
+syn match goloOperator "\.\.\." display
 syn keyword goloOperator is isnt and or not oftype in orIfNull
 hi def link goloOperator Operator
 
 
 "## Comments and doc
 syn keyword goloTodo contained TODO FIXME XXX NOTE
-syn match goloComment "#.*$" contains=@Spell,goloTodo
-syn region goloDoc start=/----/ end=/----/ fold contains=@Spell,goloTodo
+syn match goloComment "#.*$" display contains=@Spell,goloTodo
+
+if s:golo_with_markdown
+  syn include @Markdown syntax/markdown.vim
+  syn case match
+  syn region goloDoc start=/----/ matchgroup=Comment end=/----/ fold contains=@Spell,goloTodo,markdown[^H].*
+else
+  syn region goloDoc start=/----/ matchgroup=Comment end=/----/ fold contains=@Spell,goloTodo
+  hi def link goloDoc Comment
+endif
+
+
 hi def link goloTodo Todo
-hi def link goloDoc Comment
 hi def link goloComment Comment
 
 
@@ -113,16 +129,16 @@ syn keyword goloNull null
 hi def link goloNull Statement
 syn keyword goloThis this self
 hi def link goloThis Statement
-syn match goloClassRef "\.class"
-syn match goloClassRef "\.module"
+syn match goloClassRef "\.class" display
+syn match goloClassRef "\.module" display
 hi def link goloClassRef Number
 
 "== Strings
-syn match goloEscape contained "\\\([4-9]\d\|[0-3]\d\d\|[\"\\'ntbrf]\|u\x\{4\}\)"
-syn match goloCharacter "'[^']*'" contains=goloEscape
-syn match goloCharacter "'\\''" contains=goloEscape
-syn match goloCharacter "'[^\\]'"
-syn match goloString "\"[^"]*\"" contains=goloEscape,@Spell
+syn match goloEscape contained "\\\([4-9]\d\|[0-3]\d\d\|[\"\\'ntbrf]\|u\x\{4\}\)" display
+syn match goloCharacter "'[^']*'" contains=goloEscape display
+syn match goloCharacter "'\\''" contains=goloEscape display
+syn match goloCharacter "'[^\\]'" display
+syn match goloString "\"[^"]*\"" contains=goloEscape,@Spell display
 syn region goloMultiString start=/"""/ end=/"""/ fold contains=goloEscape,@Spell
 hi def link goloEscape Special
 hi def link goloCharacter String
@@ -131,19 +147,21 @@ hi def link goloMultiString String
 
 "== Numbers
 " integer/long
-syn match goloNumber "\<\d\(\d\|_\d\)*\(_L\)\=\>"
+syn match goloNumber "\<\d\(\d\|_\d\)*\(_L\)\=\>" display
 " double/float
-syn match goloNumber "\(\<\d\+\.\=\d*\|\.\d\+\)\(e[-+]\=\d\+\)\=\(_F\)\=\>"
-syn match goloNumber "\<\d\+\(e[-+]\=\d\+\)\=\>"
+syn match goloNumber "\(\<\d\+\.\=\d*\|\.\d\+\)\(e[-+]\=\d\+\)\=\(_F\)\=\>" display
+syn match goloNumber "\<\d\+\(e[-+]\=\d\+\)\=\>" display
 " Java syntax invalid in golo
-syn match goloError "\d\+[lLdDfF]"
-syn match goloError "\<\d\+E[-+]\=\d\+\>"
+syn match goloError "\d\+[lLdDfF]" display
+syn match goloError "\<\d\+E[-+]\=\d\+\>" display
 hi def link goloNumber Number
 
 
 
 
-"syn sync fromstart
+syn sync fromstart
+syn spell default
+" syn case
 let b:current_syntax = "golo"
 let b:spell_options="contained"
 set foldmethod=syntax
