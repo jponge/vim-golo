@@ -8,7 +8,9 @@ endif
 syn keyword goloIrNodeType Block Assignment Return LocalReference
 
 syn match goloIrNodeType "Function \([^:]\+\)\@="
+syn match goloIrNodeType "Local function \([^:]\+\)\@="
 syn match goloIrFunctionName "\%(Function \)\@<=<\=\h[a-zA-Z0-9$_]\+>\=\(\s\+\)\@="
+syn match goloIrFunctionName "\%(Local function \)\@<=<\=\h[a-zA-Z0-9$_]\+>\=\(\s\+\)\@="
 syn keyword goloIrNodeType Augmentation nextgroup=goloIrTarget
 syn match goloIrTarget "\%(Augmentation on \)\@<=\h[a-zA-Z0-9_.]\+"
 
@@ -16,7 +18,14 @@ syn match goloIrNodeType "Reference lookup"
 syn match goloIrNodeType "Binary operator"
 syn match goloIrNodeType "Method invocation"
 syn match goloIrNodeType "Function call\(:\)\@="
-syn match goloIrNodeType "Closure reference"
+syn match goloIrNodeType "Closure reference\(:\)\@="
+syn match goloIrNodeType "Closure\(:\)\@="
+syn match goloIrNodeType "ModuleImport"
+syn match goloIrNodeType "Match"
+syn match goloIrNodeType "When"
+syn match goloIrNodeType "Otherwise"
+syn match goloIrNodeType "Constant"
+syn match goloIrNodeType "Conditional"
 
 syn match goloIrDelimiter "{"
 syn match goloIrDelimiter "}"
@@ -32,12 +41,15 @@ syn match goloIrNodeProperty "on module state?"
 syn match goloIrNodeProperty "anonymous?"
 syn match goloIrNodeProperty "named arguments?"
 
-syn match goloIrNodeProperty "kind=" nextgroup=goloIrConstant
-syn match goloIrNodeProperty "name=" nextgroup=goloIrString
-syn match goloIrNodeProperty "index=" nextgroup=goloIrNumber
+syn match goloIrNodeProperty "kind\(=\)\@=" nextgroup=goloIrConstant
+syn match goloIrNodeProperty "name\(=\)\@=" nextgroup=goloIrString
+syn match goloIrNodeProperty "index\(=\)\@=" nextgroup=goloIrNumber
 syn match goloIrNodeProperty "regular arguments at index" nextgroup=goloIrNumber skipwhite
+syn match goloIrNodeProperty "packageAndClass"
+syn match goloIrNodeProperty "implicit"
+syn match goloIrNodeProperty "selfname\(:\)\@="
 
-syn keyword goloIrConstant true false CONSTANT MODULE_CONSTANT 
+syn keyword goloIrConstant true false CONSTANT MODULE_CONSTANT null
 syn match goloIrString "'[^']*'"
 
 
