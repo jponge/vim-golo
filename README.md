@@ -3,6 +3,11 @@
 This bundle adds a basic syntax support for the [Golo programming language](http://golo-lang.org/), 
 as well as some default customisations and plugins configurations.
 
+Install using [Plug](https://github.com/junegunn/vim-plug):
+```
+Plug 'jponge/vim-golo'
+```
+
 It works best when used in combination with [Pathogen](https://github.com/tpope/vim-pathogen):
 
     cd ~/.vim/bundle
